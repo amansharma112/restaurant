@@ -1,6 +1,50 @@
+import { NavLink, useNavigate } from 'react-router-dom'
 import image1 from '../assets/photos/p2.jpg'
+import { useEffect, useState } from 'react'
 
 export default function Login() {
+    const navigate = useNavigate();
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handledata = (e) => {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log(data);
+
+    }
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('formData'));
+        if (items) {
+            setItems(items);
+            // console.log(items);
+            // console.log(data);
+            
+            
+        }
+    }, []);
+
+    if(data.email==items.email && data.password==items.password){
+        navigate("/admin")
+        console.log(items);
+        console.log(data);
+        
+        
+    }
+
+
+
     return (
         <>
             <div className="container mx-auto  md:grid grid-cols-2 gap-1 h-screen  ">
@@ -14,14 +58,14 @@ export default function Login() {
                         <p>Please enter your details</p>
                     </div>
 
-                    <form action="" method='post' className="place-items-center">
+                    <form action="" onSubmit={handleSubmit} className="place-items-center">
                         <div className='md:w-[450px]' >
                             <h5 className='text-md font-medium'>Email</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" placeholder="  Enter your email" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='email' value={data.email} onChange={handledata} placeholder="  Enter your email" />
                         </div>
                         <div className='md:w-[450px]'>
                             <h5 className='text-md font-medium'>Password</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" placeholder="  Enter your password" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='password' value={data.password} onChange={handledata} placeholder="  Enter your password" />
                         </div>
                         <div className='flex my-2 w-full justify-between'>
                             <div className='flex'>
@@ -32,7 +76,10 @@ export default function Login() {
                         </div>
 
                         <div className='md:w-[450px]'>
-                            <button type="button" className="w-full text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
+                            <button type="submit" className="w-full text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
+                            <NavLink to="/signup">
+                                <button type="submit" className="w-full text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">SignUp</button>
+                            </NavLink>
                         </div>
                     </form>
 
