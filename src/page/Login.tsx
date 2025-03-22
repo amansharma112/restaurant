@@ -3,25 +3,25 @@ import image1 from '../assets/photos/p2.jpg'
 export default function Login() {
     return (
         <>
-            <div className="container mx-auto  grid grid-cols-2 gap-1 h-screen ">
+            <div className="container mx-auto  md:grid grid-cols-2 gap-1 h-screen  ">
 
-                <div className='h-screen'>
-                    <img src={image1} alt="no image" className='ml-16 rounded-2xl h-11/12 mt-8 w-4/5' />
+                <div className='md:h-screen'>
+                    <img src={image1} alt="no image" className='md:ml-16 ml-8 rounded-2xl h-11/12 mt-8 w-4/5' />
                 </div>
-                <div className="  place-items-center  ml-28 h-screen w-1/2">
+                <div className="  place-items-center  md:ml-28 mx-auto md:h-screen w-1/2">
                     <div className="place-items-center mt-36 mb-16">
-                        <h2 className="text-5xl font-medium">Welcome back!</h2>
+                        <h2 className="md:text-5xl text-2xl font-medium">Welcome back!</h2>
                         <p>Please enter your details</p>
                     </div>
 
-                    <form action="" method='post' className="">
-                        <div className='w-[450px]' >
+                    <form action="" method='post' className="place-items-center">
+                        <div className='md:w-[450px]' >
                             <h5 className='text-md font-medium'>Email</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md w-full' type="text" placeholder="  Enter your email" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" placeholder="  Enter your email" />
                         </div>
-                        <div>
+                        <div className='md:w-[450px]'>
                             <h5 className='text-md font-medium'>Password</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md w-full' type="text" placeholder="  Enter your password" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" placeholder="  Enter your password" />
                         </div>
                         <div className='flex my-2 w-full justify-between'>
                             <div className='flex'>
