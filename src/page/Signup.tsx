@@ -20,6 +20,7 @@ export default function Signup() {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        navigate("/login")
         // console.log(formData);
         
 
@@ -32,6 +33,7 @@ export default function Signup() {
 
     useEffect(() => {
         localStorage.setItem('formData', JSON.stringify(formData));
+        
       }, [formData]);
 
 

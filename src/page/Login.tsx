@@ -18,6 +18,16 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(data.email==items.email && data.password==items.password){
+            navigate("/admin")
+            console.log(items);
+            console.log(data);
+            
+            
+        }
+        else{
+            alert("Invalid Id & Password")
+        }
         // console.log(data);
 
     }
@@ -35,13 +45,7 @@ export default function Login() {
         }
     }, []);
 
-    if(data.email==items.email && data.password==items.password){
-        navigate("/admin")
-        console.log(items);
-        console.log(data);
-        
-        
-    }
+    
 
 
 
