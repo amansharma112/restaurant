@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 export default function Admin() {
     const navigate = useNavigate()
     const [data, setData] = useState([]);
+    
+    
+
 
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem('formData'))
+        const data = JSON.parse(localStorage.getItem('key'))
         if (data) {
             setData(data);
             console.log(data);
@@ -15,7 +18,8 @@ export default function Admin() {
     },[])
 
     function resetData(){
-        localStorage.clear()
+        localStorage.removeItem("key")
+        // localStorage.clear()
         navigate("/login")
         
     }

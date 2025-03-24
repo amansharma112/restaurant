@@ -20,8 +20,12 @@ export default function Signup() {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        
+        localStorage.setItem("key", JSON.stringify(formData));
         navigate("/login")
         // console.log(formData);
+    
+
         
 
         
@@ -31,10 +35,10 @@ export default function Signup() {
 
     
 
-    useEffect(() => {
-        localStorage.setItem('formData', JSON.stringify(formData));
+    // useEffect(() => {
+    //     localStorage.setItem('formData', JSON.stringify(formData));
         
-      }, [formData]);
+    //   }, [formData]);
 
 
     return (

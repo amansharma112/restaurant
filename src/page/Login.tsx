@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import image1 from '../assets/photos/p2.jpg'
 import { useEffect, useState } from 'react'
 
+
 export default function Login() {
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -35,7 +36,7 @@ export default function Login() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        const items = JSON.parse(localStorage.getItem('formData'));
+        const items = JSON.parse(localStorage.getItem('key'));
         if (items) {
             setItems(items);
             // console.log(items);
