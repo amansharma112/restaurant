@@ -19,6 +19,7 @@ export default function Admin() {
 
     function resetData(){
         localStorage.removeItem("key")
+        localStorage.removeItem("login")
         // localStorage.clear()
         navigate("/login")
         

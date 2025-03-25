@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 export default function Login() {
     const navigate = useNavigate();
+    let flag = false
     const [data, setData] = useState({
         email: '',
         password: ''
@@ -17,9 +18,12 @@ export default function Login() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:any) => {
         e.preventDefault();
+        
         if(data.email==items.email && data.password==items.password){
+            localStorage.setItem("login", true)
+        
             navigate("/admin")
             console.log(items);
             console.log(data);
