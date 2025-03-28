@@ -36,6 +36,7 @@ export default function Login() {
                 
                 localStorage.setItem("token", res_data.token)
                 localStorage.setItem("username", res_data.data[2])
+                localStorage.setItem("login", "true")
             
                 navigate("/admin")
                 // console.log(items);

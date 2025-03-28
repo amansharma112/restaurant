@@ -10,7 +10,7 @@ export default function Navbar() {
         <NavLink className='m-4 p-5 text-4xl' to="/">Home</NavLink>
         <NavLink className='m-4 p-5 text-4xl' to="/about">About</NavLink>
         <NavLink className='m-4 p-5 text-4xl' to="/contect">Contact-Us</NavLink>
-        {!login?<NavLink className='m-4 p-5 text-4xl' to="/login">Login</NavLink>:<NavLink className='m-4 p-5 text-4xl' to="/admin">Admin</NavLink>}
+        {login=="true"? <NavLink className='m-4 p-5 text-4xl' to="/admin">Admin</NavLink>:<NavLink className='m-4 p-5 text-4xl' to="/login">login</NavLink>}
         
         
   </nav>
