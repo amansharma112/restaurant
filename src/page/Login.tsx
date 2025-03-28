@@ -5,34 +5,54 @@ import { useEffect, useState } from 'react'
 
 export default function Login() {
     const navigate = useNavigate();
-    let flag = false
+    // let flag = false
     const [data, setData] = useState({
         email: '',
         password: ''
     })
 
-    const handledata = (e) => {
+    const handledata = (e:any) => {
         setData({
             ...data,
             [e.target.name]: e.target.value
         })
     }
 
-    const handleSubmit = (e:any) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault();
-        
-        if(data.email==items.email && data.password==items.password){
-            localStorage.setItem("login", true)
-        
-            navigate("/admin")
-            console.log(items);
-            console.log(data);
+        try {
+            const response = await fetch(`http://localhost:8000/api/user/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            let res_data = await response.json()
+            console.log("login", res_data.data[2]);
+
+            if(response.ok){
+                // console.log("token", res_data.token);
+                
+                localStorage.setItem("token", res_data.token)
+                localStorage.setItem("username", res_data.data[2])
             
-            
+                navigate("/admin")
+                // console.log(items);
+                // console.log(data);
+                
+                
+            }
+            else{
+                alert("Invalid Id & Password")
+            }
+
+        } catch (error) {
+            console.log(error);
+
         }
-        else{
-            alert("Invalid Id & Password")
-        }
+        
+       
         // console.log(data);
 
     }

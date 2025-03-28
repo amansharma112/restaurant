@@ -1,45 +1,47 @@
 import { NavLink, redirect, useNavigate } from 'react-router-dom'
 import image2 from '../assets/photos/p1.jpg'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function Signup() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        name:'',
-        phone:'',
-        email:'',
-        password:'',
+        name: '',
+        username: '',
+        phone: '',
+        email: '',
+        password: '',
+        bio: ''
     })
-     
-    const handlechange = (e) => {
+
+    const handlechange = (e: { target: { name: any; value: any } }) => {
         setFormData({
             ...formData,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        
+        try {
+            const response = await fetch(`http://localhost:8000/api/user/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            console.log(response);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
         localStorage.setItem("key", JSON.stringify(formData));
         navigate("/login")
-        // console.log(formData);
-    
 
-        
 
-        
-        
-        
     }
-
-    
-
-    // useEffect(() => {
-    //     localStorage.setItem('formData', JSON.stringify(formData));
-        
-    //   }, [formData]);
-
 
     return (
         <>
@@ -54,33 +56,41 @@ export default function Signup() {
                         <p>Please enter your details</p>
                     </div>
 
-                    <form  className="place-items-center" onSubmit={handleSubmit}>
+                    <form className="place-items-center" onSubmit={handleSubmit}>
                         <div className='md:w-[450px]' >
                             <h5 className='text-md font-medium'>Full Name</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='name' value = {formData.name} onChange={handlechange}  placeholder="  Enter Full Name" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='name' value={formData.name} onChange={handlechange} placeholder="  Enter Full Name" />
+                        </div>
+                        <div className='md:w-[450px]' >
+                            <h5 className='text-md font-medium'>User Name</h5>
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='username' value={formData.username} onChange={handlechange} placeholder="  Enter User Name" />
                         </div>
                         <div className='md:w-[450px]' >
                             <h5 className='text-md font-medium'>Phone Number</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text"  name='phone' value = {formData.phone} onChange={handlechange}  placeholder="  Enter your phone number" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='phone' value={formData.phone} onChange={handlechange} placeholder="  Enter your phone number" />
                         </div>
                         <div className='md:w-[450px]' >
                             <h5 className='text-md font-medium'>Email</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text"  name='email' value = {formData.email} onChange={handlechange}  placeholder="  Enter your email" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='email' value={formData.email} onChange={handlechange} placeholder="  Enter your email" />
                         </div>
                         <div className='md:w-[450px]'>
                             <h5 className='text-md font-medium'>Set Password</h5>
-                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text"  name='password' value = {formData.password} onChange={handlechange}  placeholder="  Enter your password" />
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='password' value={formData.password} onChange={handlechange} placeholder="  Enter your password" />
+                        </div>
+                        <div className='md:w-[450px]' >
+                            <h5 className='text-md font-medium'>Bio</h5>
+                            <input className='h-8 ml-2 border-2 rounded-md md:w-full' type="text" name='bio' value={formData.bio} onChange={handlechange} placeholder="  Enter your bio" />
                         </div>
                         <div className='flex my-2 w-full justify-between'>
                             <div className='flex'>
                                 <input className='ml-2 border-2 rounded-md' type="checkbox" />
                                 <h5 className='text-md mr-10'>Remember me</h5>
                             </div>
-                            
+
                         </div>
 
                         <div className='md:w-[450px]'>
-                        {/* <NavLink to="/login"> */}
+                            {/* <NavLink to="/login"> */}
                             <button type="submit" className="w-full text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Signup</button>
                             {/* </NavLink> */}
                         </div>
