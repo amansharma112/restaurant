@@ -29,13 +29,19 @@ export default function Login() {
                 body: JSON.stringify(data)
             })
             let res_data = await response.json()
-            console.log("login", res_data.data[2]);
+            let xyz = {...res_data.data}
+            console.log("xz", xyz);
+            console.log("abc", res_data);
+            
+            
+
+            console.log("login", xyz.username);
 
             if(response.ok){
                 // console.log("token", res_data.token);
                 
                 localStorage.setItem("token", res_data.token)
-                localStorage.setItem("username", res_data.data[2])
+                localStorage.setItem("username", xyz.username)
                 localStorage.setItem("login", "true")
             
                 navigate("/admin")
