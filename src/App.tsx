@@ -25,17 +25,17 @@ function App() {
 
 
           {/* ProtectedRoute  */}
-          
+          <Route element={<Protectedroute />}>
             <Route path="/about" element={<About />} />
             <Route path="/admin" element={<Admin />} />
-          
 
+          </Route>
 
 
 
 
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter >
     </>
   )
 }
