@@ -7,6 +7,8 @@ import Contect from "./page/Contect"
 import Navbar from "./page/Navbar"
 import Admin from "./page/Admin"
 import Protectedroute from "./page/protectedroute"
+import Post_in from "./page/Post_in"
+import Post from "./page/Post"
 
 
 function App() {
@@ -28,14 +30,16 @@ function App() {
           <Route element={<Protectedroute />}>
             <Route path="/about" element={<About />} />
             <Route path="/admin" element={<Admin />} />
-
+            <Route path="/postin" element={<Post_in />} />
+            <Route path="/postin/post" element={<Post />} />
           </Route>
 
 
 
 
+
         </Routes>
-      </BrowserRouter >
+      </BrowserRouter>
     </>
   )
 }
